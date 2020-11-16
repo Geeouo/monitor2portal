@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="gee.example.mybatissample.mapper.DealMapper">
+
+    <select id="findAllOrg" resultType="gee.example.mybatissample.entity.JwCloudOrg">
+        select * from
+        <include refid="ORG_TABLE"></include>
+        ;
+    </select>
+    <select id="findAllArea" resultType="gee.example.mybatissample.entity.JwCloudArea">
+        select * from
+        <include refid="AREA_TABLE"></include>
+        ;
+    </select>
+
+
+    <insert id="insertQu" parameterType="gee.example.mybatissample.entity.QuEntity" useGeneratedKeys="true"
+            keyProperty="quId" keyColumn="id">
+        insert into
+        <include refid="AREA_TABLE"></include>
+        (name,parent_id,path) values( #{quName},#{parentId},#{path});
+    </insert>
+
+
+    <insert id="insertJD" parameterType="gee.example.mybatissample.entity.JDEntity" useGeneratedKeys="true"
+            keyProperty="jdId" keyColumn="id">
+        insert into
+        <include refid="AREA_TABLE"></include>
+        (name,parent_id,path) values( #{jdName},#{parentId},#{path});
+    </insert>
+
+    <insert id="insertSQ" parameterType="gee.example.mybatissample.entity.SQEntity" useGeneratedKeys="true"
+            keyProperty="sqId" keyColumn="id">
+        insert into
+        <include refid="AREA_TABLE"></include>
+        (name,parent_id,path) values( #{sqName},#{parentId},#{path});
+    </insert>
+
+
+    <sql id="AREA_TABLE">
+        jw_cloud_area
+    </sql>
+
+    <sql id="ORG_TABLE">
+        jw_cloud_org
+    </sql>
+</mapper
+>
